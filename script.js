@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dots = document.querySelectorAll(".dot")
     const totalSlides = slides.length
 
-    let slideInterval = null
+    let slideTimeout = null
 
     function goToSlide(slideIndex) {
         slides.forEach((slide) => slide.classList.remove("active"))
@@ -19,28 +19,25 @@ document.addEventListener("DOMContentLoaded", () => {
     function nextSlide() {
         currentSlide = (currentSlide + 1) % totalSlides
         goToSlide(currentSlide)
+        scheduleNextSlide() // ← запускаем следующий показ
     }
 
-    function startSlideShow() {
-        slideInterval = setInterval(nextSlide, 5000) // 5 секунд
-    }
-
-    function stopSlideShow() {
-        clearInterval(slideInterval)
+    function scheduleNextSlide() {
+        clearTimeout(slideTimeout)
+        slideTimeout = setTimeout(nextSlide, 3400) // 5 секунд
     }
 
     dots.forEach((dot) => {
         dot.addEventListener("click", function () {
             const slideIndex = parseInt(this.getAttribute("data-slide"))
             goToSlide(slideIndex)
-            stopSlideShow()
-            startSlideShow()
+            scheduleNextSlide()
         })
     })
 
-    const slider = document.querySelector(".slider")
-    slider.addEventListener("mouseenter", stopSlideShow)
-    slider.addEventListener("mouseleave", startSlideShow)
+    // const slider = document.querySelector(".slider")
+    // slider.addEventListener("mouseenter", () => clearTimeout(slideTimeout))
+    // slider.addEventListener("mouseleave", scheduleNextSlide)
 
-    startSlideShow()
+    scheduleNextSlide()
 })
