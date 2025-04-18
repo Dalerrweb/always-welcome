@@ -60,9 +60,11 @@ header .container {
 }
 
 .language {
+	all: unset;
 	color: #0099cc;
 	font-weight: bold;
 	font-size: 18px;
+	cursor: pointer;
 }
 
 .phone {
@@ -194,7 +196,8 @@ footer {
 	color: #333;
 }
 
-.footer-info a {
+.footer-info a,
+.footer-info h3 {
 	color: #0099cc;
 }
 

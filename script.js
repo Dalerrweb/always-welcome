@@ -41,3 +41,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
     scheduleNextSlide()
 })
+
+const translations = {
+    uz: [
+        "B2B va B2C modellarida korporativ tadbirlarni rejalashtirish, ishlab chiqish va tashkil etishga qaratilgan xizmatlar majmuasi.",
+        "Korporativ tadbirlar, reklama, ko'ngilochar va moda sanoati uchun foto, video va reklama mahsulotlarini ishlab chiqarish.",
+        "Biz mijoz ehtiyojlariga yo'naltirilgan va muayyan biznes muammolarni hal qiluvchi kreativ dizayn yaratamiz.",
+        "Dunyoning yetakchi reklama agentliklari bilan hamkorlik va xalqaro sheriklik DMC tarmog'i."
+    ],
+    en: [
+        "The cycle of services aimed at the planning, development and organization a full range of corporate activities in B2B and B2C models.",
+        "Production of photo, video and promotional products for corporate events, advertising, entertainment and fashion-industry.",
+        "We make a creative design which is oriented on customer needs and solve certain business problems.",
+        "Private international partner network DMC and cooperation with the world's leading advertising agencies."
+    ]
+};
+
+let currentLang = 'en';
+
+function toggleLanguage() {
+    const newLang = currentLang === 'en' ? 'uz' : 'en';
+    const paragraphs = document.querySelectorAll('.service-item p');
+
+    paragraphs.forEach((p, index) => {
+        p.textContent = translations[newLang][index];
+    });
+
+    // Меняем текст на кнопке
+    const btn = document.getElementById('lang-toggle');
+    btn.textContent = newLang === 'en' ? 'UZ' : 'EN';
+
+    currentLang = newLang;
+}
