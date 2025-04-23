@@ -67,7 +67,7 @@ function toggleLanguage() {
         p.textContent = translations[newLang][index];
     });
 
-    // Меняем текст на кнопке
+    // Меняем текст на кнопке 1
     const btn = document.getElementById('lang-toggle');
     btn.textContent = newLang === 'en' ? 'UZ' : 'EN';
 
